@@ -7,8 +7,7 @@ const app = express();
 
 // Environment variables, setup with heroku/localhost
 const env = process.env.NODE_ENV || "dev";
-const url = process.env.MONGOLAB_URI || "mongodb://localhost:27017/draynori" + env;
-const secret = process.env.SECRET || "This is the session secret!";
+const url = process.env.MONGOLAB_URI || "mongodb://localhost:27017/foodlogiq" + env;
 
 // Setup Express App
 app.use(bodyParser.json());
@@ -34,5 +33,12 @@ const contentRoute = require('./routes/content');
 
 app.use('/api', contentRoute);
 
-app.listen(process.env.PORT || 3000);
-console.log('application listening.');
+// Listen, and setup for working with the test suite
+app.set('port', (process.env.PORT || 3000));
+if (require.main === module) {
+  app.listen(app.get('port'), function () {
+    console.log("Server running at http://localhost:3000")
+  })
+}
+
+module.exports = app;
