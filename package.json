@@ -4,7 +4,7 @@
   "description": "foodlogiq coding test backen",
   "main": "app.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha -b",
+    "test": "NODE_ENV=test mocha",
     "start": "NODE_ENV=dev node app.js"
   },
   "repository": {

@@ -42,7 +42,7 @@ router.post('/answer', function (req, res) {
 // get all responses
 
 router.get('/response', function (req, res) {
-  Applicant.find({})
+  Applicant.find({}).sort('-date')
   .then(function(data) {
     let out = data.map((resp) => {
       return {
